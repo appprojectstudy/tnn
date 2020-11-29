@@ -6,6 +6,13 @@ public class SetDatabase {
     private String hostId;
     private String hostPw;
 
+    public SetDatabase(String hostName, String hostId, String hostPw) {
+        this.hostName = hostName;
+        this.hostId = hostId;
+        this.hostPw = hostPw;
+
+    }
+
     public void setHostName(String hostName) {
         hostName = this.hostName;
     }

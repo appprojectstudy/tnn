@@ -5,30 +5,25 @@ import com.pj.tnn.Variable;
 
 public class Database {
 
+    public String hostName;
+    public String hostId;
+    public String hostPw;
 
     public Database() {
 
     }
 
-    public String hostName;
-    public String hostId;
-    public String hostPw;
+    public SetDatabase setDatabase = new SetDatabase(hostName, hostId, hostPw);
 
-    public SetDatabase setDatabase = new SetDatabase();
-
-    public SetDatabase setSetDatabase() {
-        setDatabase.setHostName("127.0.0.1");
-        setDatabase.setHostId("test");
-        setDatabase.setHostPassWord("test");
-
-        return setDatabase;
+    public void getHostName() {
+        hostName =  setDatabase.getHostName();
     }
 
-    public void getSetDatabase(SetDatabase setDatabase) {
-        this.setDatabase = setDatabase;
+    public void getHostId() {
+        hostId =  setDatabase.getHostId();
+    }
 
-        hostName = setDatabase.getHostName();
-        hostId = setDatabase.getHostId();
-        hostPw = setDatabase.getHostPassWord();
+    public void getHostPassWord() {
+        hostPw =  setDatabase.getHostPassWord();
     }
 }
