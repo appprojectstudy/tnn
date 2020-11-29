@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.pj.tnn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
