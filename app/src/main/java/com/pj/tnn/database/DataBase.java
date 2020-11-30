@@ -29,7 +29,7 @@ public class DataBase {
     private ApiInterface apiInterface;
     private ApiClient apiClient;
 
-    public void init() {
+    public void initLoadJSON() {
         apiInterface = apiClient.getAPiClient().create(ApiInterface.class);
 
         Observable<Model> observable = apiInterface.getData();
@@ -59,6 +59,10 @@ public class DataBase {
                     }
 
                 });
+    }
+
+    public void initAddUserInfo() {
+
     }
 }
 

@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static Context context;
     public static SetDataBase setDataBase = new SetDataBase("name", "id", "pw");
+    public static Variable variable = new Variable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
