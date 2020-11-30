@@ -10,6 +10,7 @@ import com.pj.tnn.database.SetDataBase;
 public class MainActivity extends AppCompatActivity {
 
     public static Context context;
+    public static SetDataBase setDataBase = new SetDataBase("name", "id", "pw");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

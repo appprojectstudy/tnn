@@ -19,8 +19,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.pj.tnn.MainActivity.setDataBase;
+
 public class DataBase {
-    public static SetDataBase setDataBase = new SetDataBase("name", "id", "pw");
 
     private String myJson;
     private ArrayList<HashMap<String, String>> userList;
@@ -63,23 +64,24 @@ public class DataBase {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Model>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
+                    public void onSubscribe(Disposable d) { }
 
                     @Override
                     public void onNext(Model model) {
-
+                        Log.d("TEST", "name : " + model.getData().getUserName() + "\n"
+                                    + "id : " + model.getData().getUserId()  + "\n"
+                                    + "pw : " + model.getData().getPassWord()
+                        );
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.d("TEST", "error : " + e.toString());
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.d("TEST", "called");
                     }
 
                 });
