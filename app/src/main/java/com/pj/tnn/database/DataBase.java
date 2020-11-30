@@ -29,32 +29,6 @@ public class DataBase {
     private ApiInterface apiInterface;
     private ApiClient apiClient;
 
-    public void showList() {
-        try {
-            JSONObject jsonObject = new JSONObject(myJson);
-            users = jsonObject.getJSONArray(setDataBase.getTagResult());
-
-            for(int i = 0; i < users.length(); i++) {
-                JSONObject jb = users.getJSONObject(i);
-
-                String name = jb.getString(setDataBase.getTagName());
-                String id = jb.getString(setDataBase.getTagId());
-                String pw = jb.getString(setDataBase.getTagPw());
-
-                HashMap<String, String> users = new HashMap<String, String>();
-
-                users.put(setDataBase.getTagName(), name);
-                users.put(setDataBase.getTagId(), id);
-                users.put(setDataBase.getTagPw(), pw);
-
-                userList.add(users);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void init() {
         apiInterface = apiClient.getAPiClient().create(ApiInterface.class);
 
