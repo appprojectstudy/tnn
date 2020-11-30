@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataBase {
-    String myJson;
-    ArrayList<HashMap<String, String>> userList;
-    JSONArray users = null;
-
     public static SetDataBase setDataBase = new SetDataBase("name", "id", "pw");
+
+    private String myJson;
+    private ArrayList<HashMap<String, String>> userList;
+    private JSONArray users = null;
     private ApiInterface apiInterface;
     private ApiClient apiClient;
 

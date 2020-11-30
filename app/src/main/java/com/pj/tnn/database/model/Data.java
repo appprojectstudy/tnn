@@ -11,8 +11,7 @@ public class Data {
 
     @SerializedName("pw")
     private String passWord;
-
-
+    
     public String getUserName ()
     {
         return userName;
