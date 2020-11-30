@@ -22,7 +22,7 @@ public class DataBase {
     private ArrayList<HashMap<String, String>> userList;
     private JSONArray users = null;
     private ApiInterface apiInterface;
-    private ApiClient apiClient;
+    private ApiClient apiClient = null;
 
     public void initLoadJSON() {
         apiInterface = apiClient.getAPiClient().create(ApiInterface.class);
