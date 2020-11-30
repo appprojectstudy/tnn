@@ -54,7 +54,7 @@ public class DataBase {
         }
     }
 
-    public void init(String url) {
+    public void init() {
         apiInterface = apiClient.getAPiClient().create(ApiInterface.class);
 
         Observable<Model> observable = apiInterface.getData();
