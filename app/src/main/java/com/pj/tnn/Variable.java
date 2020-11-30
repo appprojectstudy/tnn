@@ -47,5 +47,4 @@ public class Variable {
     public String getProductPrice() {
         return productPrice;
     }
-
 }

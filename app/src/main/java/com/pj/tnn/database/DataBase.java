@@ -18,8 +18,8 @@ import java.util.HashMap;
 
 public class DataBase {
 
-    private String myJson;
-    private ArrayList<HashMap<String, String>> userList;
+    private String myJson = null;
+    private ArrayList<HashMap<String, String>> userList = null;
     private JSONArray users = null;
     private ApiInterface apiInterface;
     private ApiClient apiClient = null;
@@ -30,30 +30,30 @@ public class DataBase {
         Observable<Model> observable = apiInterface.getData();
 
         observable.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Model>() {
-                    @Override
-                    public void onSubscribe(Disposable d) { }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<Model>() {
+                @Override
+                public void onSubscribe(Disposable d) { }
 
-                    @Override
-                    public void onNext(Model model) {
-                        Log.d("TEST", "name : " + model.getData().getUserName() + "\n"
-                                    + "id : " + model.getData().getUserId()  + "\n"
-                                    + "pw : " + model.getData().getPassWord()
-                        );
-                    }
+                @Override
+                public void onNext(Model model) {
+                    Log.d("TEST", "name : " + model.getData().getUserName() + "\n"
+                                + "id : " + model.getData().getUserId()  + "\n"
+                                + "pw : " + model.getData().getPassWord()
+                    );
+                }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d("TEST", "error : " + e.toString());
-                    }
+                @Override
+                public void onError(Throwable e) {
+                    Log.d("TEST", "error : " + e.toString());
+                }
 
-                    @Override
-                    public void onComplete() {
-                        Log.d("TEST", "called");
-                    }
+                @Override
+                public void onComplete() {
+                    Log.d("TEST", "called");
+                }
 
-                });
+            });
     }
 
     public void initAddUserInfo() {
