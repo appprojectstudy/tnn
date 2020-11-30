@@ -28,7 +28,7 @@ public class DataBase {
     private ApiInterface apiInterface;
     private ApiClient apiClient;
 
-    protected void showList() {
+    public void showList() {
         try {
             JSONObject jsonObject = new JSONObject(myJson);
             users = jsonObject.getJSONArray(setDataBase.getTagResult());
@@ -69,10 +69,12 @@ public class DataBase {
 
                     @Override
                     public void onNext(Model model) {
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
                     }
 
                     @Override
