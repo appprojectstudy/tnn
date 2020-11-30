@@ -33,7 +33,7 @@ public class DataBase {
             JSONObject jsonObject = new JSONObject(myJson);
             users = jsonObject.getJSONArray(setDataBase.getTagResult());
 
-            for(int i=0; i<users.length(); i++) {
+            for(int i = 0; i < users.length(); i++) {
                 JSONObject jb = users.getJSONObject(i);
 
                 String name = jb.getString(setDataBase.getTagName());

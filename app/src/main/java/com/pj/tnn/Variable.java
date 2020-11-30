@@ -2,7 +2,7 @@ package com.pj.tnn;
 
 public class Variable {
 
-    /* -------------------- user info variable start -------------------- */
+    /* ------------------ user info variable start ------------------ */
     private String userId;
     private String userPw;
     private String userName;
