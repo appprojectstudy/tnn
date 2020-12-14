@@ -1,5 +1,8 @@
 package com.pj.tnn;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Variable {
 
     private String userId;
@@ -8,9 +11,6 @@ public class Variable {
 
     private String production;
     private String productPrice;
-
-    // 0 = ListUrl, 1 = InfoUrl, 2 = AddUrl
-    public int apiState = 0;
 
     // reset
     public Variable() { }

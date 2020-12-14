@@ -1,8 +1,12 @@
 package com.pj.tnn.database;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.pj.tnn.database.model.Model;
+import com.pj.tnn.thread.AleadyClosedException;
+import com.pj.tnn.thread.ThreadPool;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -10,56 +14,70 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public class DataBase {
 
-    private String myJson = null;
-    private ArrayList<HashMap<String, String>> userList = null;
-    private JSONArray users = null;
-    private ApiInterface apiInterface;
+    private ApiInterface apiInterface = null;
     private ApiClient apiClient = null;
 
-    public void initLoadJSON() {
-        apiInterface = apiClient.getAPiClient().create(ApiInterface.class);
+    private ThreadPool threadPool = new ThreadPool(1, 8, 4, 6);
 
-        Observable<Model> observable = apiInterface.getData();
+    public void initLoadJSON(Context context, int state) {
+        apiInterface = apiClient.getAPiClient(state).create(ApiInterface.class);
 
-        observable.subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Observer<Model>() {
-                @Override
-                public void onSubscribe(Disposable d) { }
 
-                @Override
-                public void onNext(Model model) {
-                    Log.d("TEST", "name : " + model.getData().getUserName() + "\n"
-                                + "id : " + model.getData().getUserId()  + "\n"
-                                + "pw : " + model.getData().getPassWord()
-                    );
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    Log.d("TEST", "error : " + e.toString());
-                }
-
-                @Override
-                public void onComplete() {
-                    Log.d("TEST", "called");
-                }
-
-            });
+        productData(context, apiInterface, state);
     }
 
-    public void initAddUserInfo() {
+    public void productData(Context context, ApiInterface apiInterface, int state) {
+        Observable<Model> signInData = apiInterface.getData();
 
+        try {
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    signInData.subscribe(new Observer<Model>() {
+                        @Override
+                        public void onSubscribe(Disposable d) { }
+
+                        @Override
+                        public void onNext(Model model) {
+                            if(state == 1) {
+
+                            } else {
+
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+//                    Log.d("TEST", "error : " + e.toString());
+                            Toast toast = Toast.makeText(context, "error : " + e.toString(), Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            Log.d("TEST", "called");
+                        }
+                    });
+                }
+            });
+        } catch (AleadyClosedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void userSignIn() {
+
+    }
+
+    public void userSignUp() {
+
+    }
+
+
+    public void initAddUserInfo(Context context, int state) {
+        initLoadJSON(context, state);
     }
 }
-
-
-

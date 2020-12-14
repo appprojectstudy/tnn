@@ -14,9 +14,8 @@ public class ApiClient {
 
     public Retrofit retrofit = null;
 
-    public Retrofit getAPiClient() {
+    public Retrofit getAPiClient(int state) {
         String tempUrl = "";
-        int state = MainActivity.variable.apiState;
 
         switch (state) {
             case 0:
