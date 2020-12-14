@@ -32,40 +32,31 @@ public class DataBase {
     public void productData(Context context, ApiInterface apiInterface, int state) {
         Observable<Model> signInData = apiInterface.getData();
 
-        try {
-            threadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    signInData.subscribe(new Observer<Model>() {
-                        @Override
-                        public void onSubscribe(Disposable d) { }
+        signInData.subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.computation())
+                .subscribe(new Observer<Model>() {
+                    @Override
+                    public void onSubscribe(Disposable d) { }
 
-                        @Override
-                        public void onNext(Model model) {
-                            if(state == 1) {
+                    @Override
+                    public void onNext(Model model) {
+                        Log.d("TEST", "name : " + model.getData().getUserName() + "\n"
+                                + "id : " + model.getData().getUserId()  + "\n"
+                                + "pw : " + model.getData().getPassWord()
+                        );
+                    }
 
-                            } else {
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("TEST", "error : " + e.toString());
+                    }
 
-                            }
-                        }
+                    @Override
+                    public void onComplete() {
+                        Log.d("TEST", "called");
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-//                    Log.d("TEST", "error : " + e.toString());
-                            Toast toast = Toast.makeText(context, "error : " + e.toString(), Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-
-                        @Override
-                        public void onComplete() {
-                            Log.d("TEST", "called");
-                        }
-                    });
-                }
-            });
-        } catch (AleadyClosedException e) {
-            e.printStackTrace();
-        }
+                });
     }
 
     public void userSignIn() {
