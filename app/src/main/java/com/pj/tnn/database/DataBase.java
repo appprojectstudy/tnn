@@ -1,41 +1,39 @@
 package com.pj.tnn.database;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.pj.tnn.database.model.Model;
+import com.pj.tnn.thread.AleadyClosedException;
+import com.pj.tnn.thread.ThreadPool;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static com.pj.tnn.MainActivity.setDataBase;
 
 public class DataBase {
 
-    private String myJson;
-    private ArrayList<HashMap<String, String>> userList;
-    private JSONArray users = null;
-    private ApiInterface apiInterface;
-    private ApiClient apiClient;
+    private ApiInterface apiInterface = null;
+    private ApiClient apiClient = null;
 
-    public void init() {
-        apiInterface = apiClient.getAPiClient().create(ApiInterface.class);
+    private ThreadPool threadPool = new ThreadPool(1, 8, 4, 6);
 
-        Observable<Model> observable = apiInterface.getData();
+    public void initLoadJSON(Context context, int state) {
+        apiInterface = apiClient.getAPiClient(state).create(ApiInterface.class);
 
-        observable.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+
+        productData(context, apiInterface, state);
+    }
+
+    public void productData(Context context, ApiInterface apiInterface, int state) {
+        Observable<Model> signInData = apiInterface.getData();
+
+        signInData.subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.computation())
                 .subscribe(new Observer<Model>() {
                     @Override
                     public void onSubscribe(Disposable d) { }
@@ -43,8 +41,8 @@ public class DataBase {
                     @Override
                     public void onNext(Model model) {
                         Log.d("TEST", "name : " + model.getData().getUserName() + "\n"
-                                    + "id : " + model.getData().getUserId()  + "\n"
-                                    + "pw : " + model.getData().getPassWord()
+                                + "id : " + model.getData().getUserId()  + "\n"
+                                + "pw : " + model.getData().getPassWord()
                         );
                     }
 
@@ -60,7 +58,17 @@ public class DataBase {
 
                 });
     }
+
+    public void userSignIn() {
+
+    }
+
+    public void userSignUp() {
+
+    }
+
+
+    public void initAddUserInfo(Context context, int state) {
+        initLoadJSON(context, state);
+    }
 }
-
-
-
