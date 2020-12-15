@@ -68,7 +68,7 @@ public class DataBase {
     }
 
 
-    public void initAddUserInfo(Context context, int state) {
+    public void init(Context context, int state) {
         initLoadJSON(context, state);
     }
 }
