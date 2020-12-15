@@ -115,9 +115,9 @@ public class ThreadPool {
 
     public void printStatus() {
         synchronized(workQueue) {
-            System.out.println("Total Thread="+createdThreadCount);
-            System.out.println("Idle  Thread="+idleThreadCount);
-            System.out.println("Work  Thread="+workThreadCount);
+            Log.d("TEST", "Total Thread="+createdThreadCount);
+            Log.d("TEST", "Idle  Thread="+idleThreadCount);
+            Log.d("TEST", "Work  Thread="+workThreadCount);
         }
     }
 }
