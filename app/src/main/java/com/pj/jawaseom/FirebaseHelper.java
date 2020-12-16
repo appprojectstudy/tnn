@@ -30,7 +30,7 @@ public class FirebaseHelper {
     }
 
     public void storageDelete(final PostInfo postInfo){
-        FirebaseStorage storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance("");
         StorageReference storageRef = storage.getReference();
 
         final String id = postInfo.getId();
