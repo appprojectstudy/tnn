@@ -93,18 +93,18 @@ public class MainActivity extends BasicActivity {
                                     .replace(R.id.container, homeFragment)
                                     .commit();
                             return true;
-                        case R.id.myInfo:
-                            UserInfoFragment userInfoFragment = new UserInfoFragment();
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.container, userInfoFragment)
-                                    .commit();
-                            return true;
-                        case R.id.userList:
-                            UserListFragment userListFragment = new UserListFragment();
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.container, userListFragment)
-                                    .commit();
-                            return true;
+//                        case R.id.myInfo:
+//                            UserInfoFragment userInfoFragment = new UserInfoFragment();
+//                            getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.container, userInfoFragment)
+//                                    .commit();
+//                            return true;
+//                        case R.id.userList:
+//                            UserListFragment userListFragment = new UserListFragment();
+//                            getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.container, userListFragment)
+//                                    .commit();
+//                            return true;
                     }
                     return false;
                 }
