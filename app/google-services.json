@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "640236030974",
+    "project_id": "jawaseom",
+    "storage_bucket": "jawaseom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640236030974:android:2c3562a7772962585aceaf",
+        "android_client_info": {
+          "package_name": "com.pj.jawaseom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640236030974-n6qbrnsv1339hsr5n80hlqp63vl0d5oo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoV6EqtzCkFMw3AirRCnL0R88sT0l1fqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640236030974-n6qbrnsv1339hsr5n80hlqp63vl0d5oo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
