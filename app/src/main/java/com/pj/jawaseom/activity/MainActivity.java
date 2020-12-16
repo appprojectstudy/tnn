@@ -47,7 +47,7 @@ public class MainActivity extends BasicActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 1:
-                init();
+//                init();
                 break;
         }
     }

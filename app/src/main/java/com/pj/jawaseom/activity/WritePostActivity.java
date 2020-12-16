@@ -214,6 +214,7 @@ public class WritePostActivity extends BasicActivity {
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
+
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             final DocumentReference documentReference = postInfo == null ? firebaseFirestore.collection("posts").document() : firebaseFirestore.collection("posts").document(postInfo.getId());
             final Date date = postInfo == null ? new Date() : postInfo.getCreatedAt();
@@ -226,6 +227,7 @@ public class WritePostActivity extends BasicActivity {
                         if (text.length() > 0) {
                             contentsList.add(text);
                             formatList.add("text");
+                            Log.d("TEST", "text contents = "+ text);
                         }
                     } else if (!isStorageUrl(pathList.get(pathCount))) {
                         String path = pathList.get(pathCount);
@@ -240,6 +242,7 @@ public class WritePostActivity extends BasicActivity {
                         }
                         String[] pathArray = path.split("\\.");
                         final StorageReference mountainImagesRef = storageRef.child("posts/" + documentReference.getId() + "/" + pathCount + "." + pathArray[pathArray.length - 1]);
+                        Log.d("TEST", "documentReference.getId() = " + documentReference.getId());
                         try {
                             InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
                             StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
@@ -293,6 +296,7 @@ public class WritePostActivity extends BasicActivity {
                         finish();
                     }
                 })
+
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {

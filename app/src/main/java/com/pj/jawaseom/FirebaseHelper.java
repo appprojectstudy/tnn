@@ -3,6 +3,7 @@ package com.pj.jawaseom;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.pj.jawaseom.listener.OnPostListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +31,7 @@ public class FirebaseHelper {
     }
 
     public void storageDelete(final PostInfo postInfo){
-        FirebaseStorage storage = FirebaseStorage.getInstance("");
+        FirebaseStorage storage = FirebaseStorage.getInstance("gs://jawaseom.appspot.com");
         StorageReference storageRef = storage.getReference();
 
         final String id = postInfo.getId();
@@ -56,6 +57,8 @@ public class FirebaseHelper {
         }
         storeDelete(id, postInfo);
     }
+
+
 
     private void storeDelete(final String id, final PostInfo postInfo) {
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
